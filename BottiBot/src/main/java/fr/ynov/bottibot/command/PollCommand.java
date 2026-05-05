@@ -5,6 +5,7 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
 /**
  * PollCommand allows the user to use !poll to create a poll with an question and two answers. The other user can answer using reaction.
+ * TO DO : Allow the user to make more than 2 answers choices
  */
 public class PollCommand implements ICommand {
 
