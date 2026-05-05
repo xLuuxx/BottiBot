@@ -17,4 +17,8 @@ public class BotConfig {
         String prefix = dotenv.get("BOT_PREFIX");
         return (prefix == null || prefix.isBlank()) ? "!" : prefix;
     }
+
+    public static String getJokeApiUrl() {
+        return dotenv.get("JOKE_API_URL");
+    }
 }
