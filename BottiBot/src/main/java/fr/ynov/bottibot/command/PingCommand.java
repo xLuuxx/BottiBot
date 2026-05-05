@@ -13,7 +13,13 @@ public class PingCommand implements ICommand {
     }
 
     @Override
-    public void execute(MessageReceivedEvent event) {
+    public String getDescription() {
+        return "Répond Pong !";
+    }
+
+    @Override
+    public void execute(MessageReceivedEvent event, String[] args) {
         event.getChannel().sendMessage("Pong !").queue();
+
     }
 }
