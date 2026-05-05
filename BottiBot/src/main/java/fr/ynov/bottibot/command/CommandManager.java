@@ -20,6 +20,7 @@ public class CommandManager {
         register(new PingCommand());
         register(new JokeCommand());
         register(new PollCommand());
+        register(new HelpCommand(commands));
     }
 
     public void register(ICommand command) {
