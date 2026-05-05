@@ -43,6 +43,12 @@ public class HelpCommand implements ICommand {
             );
         }
 
+        embedBuilder.addField(
+                "/rps",
+                "Défie un membre à pierre-feuille-ciseaux avec des boutons privés.",
+                false
+        );
+
         event.getChannel().sendMessageEmbeds(embedBuilder.build()).queue();
     }
 }
