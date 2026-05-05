@@ -25,14 +25,15 @@ public class HelpCommand implements ICommand {
 
     @Override
     public String getDescription() {
-        return "Liste des commands";
+        return "Liste des commandes disponibles";
     }
 
     @Override
     public void execute(MessageReceivedEvent event, String[] args) {
         EmbedBuilder embedBuilder = new EmbedBuilder();
-        embedBuilder.setTitle("Help");
+        embedBuilder.setTitle("Aide");
         embedBuilder.setColor(Color.GREEN);
+        embedBuilder.setDescription("Voici la liste des commandes disponibles :");
 
         for (ICommand command : commands.values()) {
             embedBuilder.addField(

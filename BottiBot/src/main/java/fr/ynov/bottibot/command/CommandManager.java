@@ -3,6 +3,7 @@ package fr.ynov.bottibot.command;
 import fr.ynov.bottibot.BotConfig;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -10,8 +11,6 @@ import java.util.Map;
 /**
  * CommandManager is a class where all commands are registered and executed.
  * It contains a map of command names to their corresponding ICommand implementations.
- * Have two main methods:
- * Register and handle
  */
 public class CommandManager {
     private final Map<String, ICommand> commands = new HashMap<>();
@@ -24,7 +23,7 @@ public class CommandManager {
     }
 
     public void register(ICommand command) {
-        commands.put(command.getName(), command);
+        commands.put(command.getName().toLowerCase(), command);
     }
 
     public void handle(MessageReceivedEvent event) {
@@ -34,6 +33,9 @@ public class CommandManager {
         String prefix = BotConfig.getPrefix();
 
         if (!message.startsWith(prefix)) return;
+
+        System.out.println("[" + LocalDateTime.now() + "] "
+                + event.getAuthor().getName() + " : " + message);
 
         String withoutPrefix = message.substring(prefix.length()).trim();
         if (withoutPrefix.isEmpty()) return;
@@ -45,8 +47,14 @@ public class CommandManager {
                 : new String[0];
 
         ICommand command = commands.get(commandName);
-        if (command != null) {
-            command.execute(event, args);
+
+        if (command == null) {
+            event.getChannel()
+                    .sendMessage("Commande inconnue. Tape `!help` pour voir la liste des commandes.")
+                    .queue();
+            return;
         }
+
+        command.execute(event, args);
     }
 }

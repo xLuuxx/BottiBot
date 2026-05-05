@@ -4,8 +4,7 @@ import net.dv8tion.jda.api.entities.emoji.Emoji;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
 /**
- * PollCommand allows the user to use !poll to create a poll with an question and two answers. The other user can answer using reaction.
- * TO DO : Allow the user to make more than 2 answers choices
+ * PollCommand allows the user to create a poll with one question and two answers.
  */
 public class PollCommand implements ICommand {
 
@@ -25,7 +24,9 @@ public class PollCommand implements ICommand {
         String[] parts = content.split("\\|");
 
         if (parts.length < 3) {
-            event.getChannel().sendMessage("Utilisation : !poll <question> | <option1> | <option2>").queue();
+            event.getChannel()
+                    .sendMessage("Utilisation : !poll <question> | <option1> | <option2>")
+                    .queue();
             return;
         }
 

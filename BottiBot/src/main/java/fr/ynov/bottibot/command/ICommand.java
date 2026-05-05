@@ -4,9 +4,10 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
 /**
  * ICommand is a interface where all commands must implement to be registered in the CommandManager.
- * It contains two methods:
- * - getName(): returns the name of the command, which is used to trigger it.
- * - execute(MessageReceivedEvent event): contains the logic to execute when the command is triggered.
+ * It contains three methods:
+ *  - getName(): returns the command name.
+ *  - getDescription(): returns the command description.
+ *  - execute(MessageReceivedEvent event, String[] args): executes the command logic.
  */
 public interface ICommand {
     String getName();
